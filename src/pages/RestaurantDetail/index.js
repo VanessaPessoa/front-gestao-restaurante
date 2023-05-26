@@ -14,7 +14,12 @@ export default function RestaurantDetail() {
 
   return (
     <Container>
-
+      <Title>Menu</Title>
+     <Box>
+        {getMenu() && getMenu().map((item) => (
+            <CardMenu key={item.name} name={item.name} img={item.image} price={item.price} description={item.description} />
+        ))}
+     </Box>
     </Container>
   );
 }
