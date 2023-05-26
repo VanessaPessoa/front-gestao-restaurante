@@ -44,11 +44,21 @@ const Redirect = styled.a`
     font-weight: 600;
     font-size: 12px;
     line-height: 15px;
-    color: #4B6621;`;
+    color: #39363D;
+ `;
+
+const Button = styled.button`
+    width: 100%;
+    background-color: #39363D;
+    height: 56px;
+    color: #ffffff;
+    border-radius: 4px;
+`
 
 export {
     Container,
     Card,
     CardLink,
-    Redirect
+    Redirect,
+    Button
 }
