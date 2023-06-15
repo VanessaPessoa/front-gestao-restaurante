@@ -6,12 +6,12 @@ export default function Input({ register, name, required, errors, msgError, type
     return (
         <div className={classes.box}>
             <TextField
-                {...register(name, { required }, type={type} )} 
-                
+                {...register(name, { required } )} 
+                type={type}
                 id="outlined-required"
                 label={label}
                 className={classes.input}
-                multiline
+                multiline={false}
             />
             {errors[name] && <span className={classes.messageError}> {msgError} </span>}
 

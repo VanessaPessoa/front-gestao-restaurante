@@ -5,7 +5,6 @@ import { Container, Title, Box } from "./styles";
 export default function ListRestaurant() {
   return (
     <Container>
-      <Title>Meus Restaurantes</Title>
       <Box>
         {listRestaurant &&
           listRestaurant.map((item) => (

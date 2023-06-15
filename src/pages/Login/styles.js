@@ -21,8 +21,7 @@ const Card = styled.div`
     -webkit-box-align: center;
     align-items: center;
     padding: 40px;
-    width: 500px;
-    height: 60vh;
+    width: 400px;
     border-radius: 20px;
     background: #f9f9f9;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
@@ -44,15 +43,50 @@ const Redirect = styled.a`
     font-weight: 600;
     font-size: 12px;
     line-height: 15px;
-    color: #39363D;
+    color: #96CF74;
  `;
 
 const Button = styled.button`
     width: 100%;
-    background-color: #39363D;
+    background-color: #5c5c5c;
     height: 56px;
     color: #ffffff;
     border-radius: 4px;
+
+    &:hover{
+        cursor: pointer;
+    }
+`
+const ButtonCadastro = styled.button`
+    width: 80%;
+    margin: 2% 10% 0;
+    background: transparent;
+    height: 56px;
+    border: transparent;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+    color: #414143;
+
+
+    &:hover{
+        cursor: pointer;
+    }
+`
+
+const Form = styled.form`
+    width: 90%;
+    padding: 5%;
+
+    h2{
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        color: #414143;
+        font-size: 32px;
+        margin-bottom: 5%;
+    }
+
 `
 
 export {
@@ -60,5 +94,7 @@ export {
     Card,
     CardLink,
     Redirect,
-    Button
+    Button,
+    Form,
+    ButtonCadastro
 }
