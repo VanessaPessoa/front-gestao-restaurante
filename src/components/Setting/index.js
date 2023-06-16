@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { BoxModal, ButtonCadastro, Form } from "./styles";
+import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import { useSelector } from "react-redux";
 import { Button, Modal } from "@mui/material";
@@ -10,6 +8,11 @@ import { useForm } from "react-hook-form";
 import { TextField } from "..";
 import EstadoSelect from "../EstadoSelect";
 import { addEndereco } from "../../service";
+
+import { BoxModal, ButtonCadastro, Form } from "./styles";
+import "react-toastify/dist/ReactToastify.css";
+
+
 export default function Setting() {
   const [open, setOpen] = useState(false);
   const [estado, setEstado] = useState("");
