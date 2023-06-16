@@ -6,7 +6,7 @@ const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.ADD_ITEM:
       const {id: pratoId, name, price} = action.payload;
-      const itemExists = state.find(item => item.id === pratoId);
+      const itemExists = state.find(item => item.pratoId === pratoId);
       if (itemExists) {
         return state.map(item => item.id === pratoId ? {...item, quantidade: item.quantidade + 1} : item);
       } else {
