@@ -28,6 +28,10 @@ export const Form = styled.form`
     font-size: 32px;
     margin-bottom: 5%;
   }
+
+  .select{
+    width: 83%;
+  }
 `;
 
 export const Input = styled.input`

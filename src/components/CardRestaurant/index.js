@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Image from "mui-image";
+
 import {
   Button,
   CardActionArea,
@@ -11,7 +13,6 @@ import {
 } from "@mui/material";
 import { useStyles } from "./styles";
 
-
 export default function MultiActionAreaCard({ img, name, id }) {
   const classes = useStyles();
   const perfil = useSelector((state) => state.auth.user.perfil);
@@ -22,16 +23,8 @@ export default function MultiActionAreaCard({ img, name, id }) {
   return (
     <Card className={classes.card}>
       <CardActionArea>
-        <CardMedia
-          className={classes.content}
-          component="img"
-          height="200px"
-          width="200px"
-          distance="10px"
-          image={img}
-          alt={`logo restaurante ${name}`}
-        />
         <CardContent>
+          <Image src={img} alt="" fit="contain" height="200px" width="200px" />
           <Typography gutterBottom variant="h5" component="div">
             {name}
           </Typography>

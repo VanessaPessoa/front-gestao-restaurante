@@ -9,6 +9,7 @@ export const Nav = styled.nav`
     border-top: 1px solid #dcdcdc;
     display: flex;
     align-items: center;
+    justify-content: end;
 
     .logo{
         position: relative;

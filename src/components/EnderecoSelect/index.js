@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
-import { useStyles } from "./styles";
 import { useQuery } from "react-query";
 import { getAllEndereco } from "../../service";
 import { useSelector } from "react-redux";
@@ -18,7 +17,6 @@ function EnderecoSelect({ identificador, setIdentificador }) {
     },
     keepPreviousData: true,
   });
-  const classes = useStyles();
 
   const handleChange = (event) => {
     setIdentificador(event.target.value);
@@ -31,9 +29,9 @@ function EnderecoSelect({ identificador, setIdentificador }) {
   return (
     <>
       {enderecos.length > 0 ? (
-        <FormControl className={classes.input}>
+        <FormControl fullWidth>
           <InputLabel>Endereço</InputLabel>
-          <Select value={identificador} onChange={handleChange}>
+          <Select value={identificador} onChange={handleChange} label="Endereço">
             {enderecos.map((endereco) => (
               <MenuItem key={endereco.id} value={endereco.id}>
                 {endereco.nomeIdentificador}: {endereco.rua},{endereco.numero}.{" "}

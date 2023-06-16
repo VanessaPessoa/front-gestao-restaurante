@@ -66,10 +66,10 @@ export default function Carrinho() {
         <ul>
         {carrinho.map(item => (
           <Li key={item.pratoId}>
-            <p>Nome: {item.name}</p>
-            <p>Preço: R${item.price}</p>
-            <p>Quantidade: {item.quantidade} </p>
-            <button onClick={() => handleRemoverItem(item.id)}><Delete /> </button>
+            <p className='div1'>Nome: {item.name}</p>
+            <p className='div2'>Preço: R${item.price}</p>
+            <p className='div3'>Quantidade: {item.quantidade} </p>
+            <button className='div4' onClick={() => handleRemoverItem(item.id)}><Delete /> </button>
           </Li>
         ))}
         </ul>

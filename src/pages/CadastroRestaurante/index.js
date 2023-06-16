@@ -10,12 +10,14 @@ import { useState } from "react";
 import EstadoSelect from "../../components/EstadoSelect";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import EspecialidadeSelect from "../../components/EspecialidadeSelect";
 
 export default function CadastroClient() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const [tabIndex, setTabIndex] = useState(0);
   const [estado, setEstado] = useState();
+  const [especialidade, setEspecialidade] = useState();
 
   function handleBack() {
     navigate("/");
@@ -27,6 +29,7 @@ export default function CadastroClient() {
 
   function onSubmit(data) {
     data.estado = estado;
+    data.especialidade = especialidade;
     addRestaurante(data);
   }
 
@@ -103,7 +106,9 @@ export default function CadastroClient() {
               type="text"
               {...register("cidade", { required: true })}
             />
-            <EstadoSelect estado={estado} setEstado={setEstado} />
+            <div className="select">
+              <EstadoSelect estado={estado} setEstado={setEstado} />
+            </div>
             <Input
               placeholder="Ponto Referencia"
               type="text"
@@ -119,12 +124,13 @@ export default function CadastroClient() {
               type="text"
               {...register("descricao", { required: true })}
             />
+            <div className="select">
+              <EspecialidadeSelect
+                especialidade={especialidade}
+                setEspecialidade={setEspecialidade}
+              />
+            </div>
 
-            <Input
-              placeholder="Especialidade"
-              type="text"
-              {...register("especialidade", { required: true })}
-            />
             <Input
               placeholder="Imagem"
               type="text"
