@@ -19,25 +19,29 @@ export default function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" index element={<Page.Login />} />
-       
-        {/* Adicionar rota principal */}
+
+        <Route
+          path="/"
+          element={
+            perfil === "restaurante" ? <Page.RestaurantDetail /> : <Page.Home />
+          }
+        />
 
         <Route path="/cadastrar" element={<Page.CadastrarCliente />} />
-        
+
         <Route
           path="/cadastrar-restaurante"
           element={<Page.CadastroRestaurante />}
         />
-        
+
         <Route
           path="menu/:id"
           element={
-              <RequireAuth>
-                <Page.RestauranteMenu />
-              </RequireAuth>
+            <RequireAuth>
+              <Page.RestauranteMenu />
+            </RequireAuth>
           }
         />
-
       </Routes>
     </BrowserRouter>
   );
