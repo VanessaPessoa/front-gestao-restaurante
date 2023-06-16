@@ -1,5 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { Cadastrar, Container, Form, Ilustracao, Input } from "./style";
 import { useNavigate } from "react-router";
 import Delivery from '../../image/Delivery.avif'
@@ -21,6 +24,7 @@ export default function CadastroClient() {
 
   return (
     <Container>
+      <ToastContainer />
         <Button startIcon={<ArrowBackIosIcon />} onClick={() => handleBack()}>Voltar</Button>
         <Ilustracao src = {Delivery} />
 

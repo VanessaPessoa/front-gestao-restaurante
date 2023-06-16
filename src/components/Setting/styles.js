@@ -10,6 +10,14 @@ export const BoxModal = styled.div`
   background: #fff;
   border-radius: 8px;
   padding: 16px;
+
+  h2{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #414143;
+    font-size: 24px;
+    margin-bottom: 5%;
+}
 `;
 
 export const Form = styled.form`
@@ -28,30 +36,4 @@ export const ButtonCadastro = styled.button`
   &:hover {
     cursor: pointer;
   }
-`;
-
-export const ButtonLimpar = styled.button`
-  width: 100%;
-  height: 56px;
-  color: #5c5c5c;
-  border-radius: 4px;
-  margin-top: 8px;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export const Li = styled.li`
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 8px;
-`;
-
-export const Total = styled.p`
-font-family: 'Roboto', sans-serif;
-color: #414143;
-font-size: 16px;
-margin-bottom: 5%;
 `;

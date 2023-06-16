@@ -7,11 +7,15 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Button, Tab, Tabs } from "@mui/material";
 import { addRestaurante } from "../../service";
 import { useState } from "react";
+import EstadoSelect from "../../components/EstadoSelect";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function CadastroClient() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const [tabIndex, setTabIndex] = useState(0);
+  const [estado, setEstado] = useState();
 
   function handleBack() {
     navigate("/");
@@ -22,13 +26,17 @@ export default function CadastroClient() {
   };
 
   function onSubmit(data) {
+    data.estado = estado;
     addRestaurante(data);
   }
 
   return (
     <Container>
-     { <Button startIcon={<ArrowBackIosIcon />} onClick={() => handleBack()}> Voltar </Button>}
-     
+      <ToastContainer />
+      <Button startIcon={<ArrowBackIosIcon />} onClick={() => handleBack()}>
+        Voltar
+      </Button>
+
       <Ilustracao src={Delivery} />
 
       <Form onSubmit={handleSubmit(onSubmit)}>
@@ -95,11 +103,7 @@ export default function CadastroClient() {
               type="text"
               {...register("cidade", { required: true })}
             />
-            <Input
-              placeholder="Estado"
-              type="text"
-              {...register("estado", { required: true })}
-            />
+            <EstadoSelect estado={estado} setEstado={setEstado} />
             <Input
               placeholder="Ponto Referencia"
               type="text"
@@ -133,12 +137,14 @@ export default function CadastroClient() {
             />
             <Input
               placeholder="Hora abertura"
-               type="time" step="1"
+              type="time"
+              step="1"
               {...register("horaAbertura", { required: true })}
             />
             <Input
               placeholder="Hora Fechamento"
-               type="time" step="1"
+              type="time"
+              step="1"
               {...register("horaFechamento", { required: true })}
             />
             <Cadastrar type="submit"> Cadastrar</Cadastrar>
