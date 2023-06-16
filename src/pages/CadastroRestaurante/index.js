@@ -27,7 +27,7 @@ export default function CadastroClient() {
 
   return (
     <Container>
-     {/* Adicionar botao aqui de voltar */}
+     { <Button startIcon={<ArrowBackIosIcon />} onClick={() => handleBack()}> Voltar </Button>}
      
       <Ilustracao src={Delivery} />
 
