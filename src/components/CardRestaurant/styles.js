@@ -4,7 +4,7 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles({
     card: {
         position: "relative",
-        width: "25%",
+        width: "20%",
         marginBottom: 10
     },
     content: {
@@ -19,12 +19,5 @@ export const useStyles = makeStyles({
         margin: "16px 0",
         textTransform: "uppercase"
     },
-    location: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginBottom: 10,
-        width: "80%",
-        wordBreak: "break-all",
-    }
+    
 });

@@ -5,17 +5,18 @@ import { useNavigate } from "react-router";
 import Delivery from '../../image/Delivery.avif'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Button } from "@mui/material";
+import { addClient } from "../../service";
 
 
 export default function CadastroClient() {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
 
     function handleBack(){
         navigate("/login");
     }
   function onSubmit(data) {
-    // console.log(data);
+    addClient(data);
   }
 
   return (
@@ -33,7 +34,7 @@ export default function CadastroClient() {
 
         <Input
           placeholder="Telefone"
-          type="tel"
+          type="text"
           {...register("telefone", { required: true })}
         />
 
@@ -45,25 +46,9 @@ export default function CadastroClient() {
         <Input
           placeholder="Senha"
           type="password"
-          {...register("passowrd", { required: true })}
+          {...register("password", { required: true })}
         />
-
-        <Input
-          placeholder="Confirmar senha"
-          type="password"
-          {...register("confirmar", { required: true, 
-            validate: (value) => {
-                return value === watch('senha');
-            }
-          })}
-        />
-        {errors.confirmar && errors.confirmar.type === "required" && (
-          <span className="error">Informe a senha</span>
-        )}
-        {errors.confirmar && errors.confirmar.type === "validate" && (
-          <span className="error">As senhas não correspondem</span>
-        )}
-        <Cadastrar> Cadastrar</Cadastrar>
+        <Cadastrar type="submit"> Cadastrar</Cadastrar>
       </Form>
     </Container>
   );

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
 import auth from '../auth/reducer'
-import restaurante from '../cadastroRestaurante/reducer'
+import carrinho from '../carrinho/reducer'
 
 export default combineReducers({
     auth,
-    restaurante
+    carrinho
 })

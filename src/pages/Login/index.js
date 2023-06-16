@@ -4,9 +4,12 @@ import { TextField } from "../../components";
 import { useNavigate } from "react-router";
 import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import { useState } from "react";
-import {useDispatch} from 'react-redux'
-import * as actions from '../../store/modules/auth/action'
-import { get } from 'lodash'
+import {useDispatch} from 'react-redux';
+import * as actions from '../../store/modules/auth/action';
+import { get } from 'lodash';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Login(props) {
   const [checked, setChecked] = useState(false);
@@ -23,7 +26,7 @@ export default function Login(props) {
 
   const onSubmit = (data) => {
     var restaurante = checked;
-    dispatch(actions.loginRequest({data, restaurante, prevPath}));
+    dispatch(actions.loginRequest({data, restaurante }));
   };
 
   const handleCadastro = () => {
@@ -36,6 +39,7 @@ export default function Login(props) {
 
   return (
     <Container>
+      <ToastContainer />
       <Card>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <TextField

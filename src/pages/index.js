@@ -1,15 +1,18 @@
 import Login from "./Login";
 import Admin from "./Admin";
 import Home from "./Home";
-import ListRestaurant from "./ListRestaurant"
-import RestaurantDetail from "./RestaurantDetail"
-import CadastrarCliente from "./CadastroCliente"
+import RestaurantDetail from "./RestaurantDetail";
+import CadastrarCliente from "./CadastroCliente";
+import CadastroRestaurante from "./CadastroRestaurante";
+import RestauranteMenu from "./RestauranteMenu";
+
 
 export {
     Login,
     Admin,
-    ListRestaurant,
     RestaurantDetail,
     CadastrarCliente,
     Home,
+    CadastroRestaurante,
+    RestauranteMenu
 }
