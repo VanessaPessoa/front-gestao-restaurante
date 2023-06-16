@@ -1,46 +1,44 @@
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import * as Page from "../pages"
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import * as Page from "../pages";
 import { useSelector } from "react-redux";
+import { RestaurantMenu } from "@mui/icons-material";
 
 function RequireAuth({ children }) {
+  const signed = useSelector((state) => state.auth.isLoggedIn);
 
-    const signed = useSelector((state) => state.auth.isLoggedIn);
+  if (!signed) {
+    return <Navigate to="/login" />;
+  }
 
-    if (!signed) {
-      return <Navigate to="/login" />;
-    }
-  
-    return children;
+  return children;
 }
 
 export default function Router() {
-    const perfil = useSelector(state => state.auth.user.perfil); 
-    console.log(perfil)
-    return (
-        <BrowserRouter>
+  const perfil = useSelector((state) => state.auth.user.perfil);
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" index element={<Page.Login />} />
+       
+        {/* Adicionar rota principal */}
+
+        <Route path="/cadastrar" element={<Page.CadastrarCliente />} />
         
-            <Routes >
-                <Route path="/login" index element={<Page.Login />} />
-                <Route
-                    path="/admin"
-                    element={
-                    <RequireAuth>
-                        <Page.Admin />
-                    </RequireAuth>
-                    }
-                />
-                
-                <Route
-                    path="/"
-                    element={
-                    <RequireAuth>
-                       {perfil === 'cliente' ? <Page.Home /> : < Page.RestaurantDetail />}
-                    </RequireAuth>
-                    }
-                />
-                <Route path="/restaurant"  element={<Page.RestaurantDetail />} />
-                <Route path="/cadastrar" element={<Page.CadastrarCliente />} />
-            </Routes >
-         </BrowserRouter>
-    );
+        <Route
+          path="/cadastrar-restaurante"
+          element={<Page.CadastroRestaurante />}
+        />
+        
+        <Route
+          path="menu/:id"
+          element={
+              <RequireAuth>
+                <Page.RestauranteMenu />
+              </RequireAuth>
+          }
+        />
+
+      </Routes>
+    </BrowserRouter>
+  );
 }

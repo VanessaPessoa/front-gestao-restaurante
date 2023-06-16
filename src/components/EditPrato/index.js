@@ -2,25 +2,30 @@ import { BoxModal, Form, ButtonCadastro } from "./style";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Modal } from "@mui/material";
 import { TextField } from "..";
 import { useForm } from "react-hook-form";
-import { addPrato } from "../../service";
-export default function AddPrato({ id }) {
+import { editPrato } from "../../service";
+export default function EditPrato({ idRestaurante, nome, idPrato }) {
   const [open, setOpen] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue
   } = useForm();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  useEffect(() => {
+    setValue("nome", nome)
+  }, [setValue, nome]);
+
   const onSubmit = (data) => {
-    data.restauranteId = id;
-    addPrato(data);
+    data.restauranteId = idRestaurante;
+    editPrato(data, idPrato);
     
   };
 
@@ -28,7 +33,7 @@ export default function AddPrato({ id }) {
     <>
     <ToastContainer />
 
-      <Button onClick={handleOpen}> Adicionar Pratos </Button>
+      <Button onClick={handleOpen}> Editar Pratos </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -44,6 +49,7 @@ export default function AddPrato({ id }) {
               errors={errors}
               msgError={"Campo obrigatório"}
               required
+              disabled
             />
             <TextField
               label={"Descrição"}
@@ -70,7 +76,7 @@ export default function AddPrato({ id }) {
               msgError={"Campo obrigatório"}
               required
             />
-            <ButtonCadastro type="submit">Cadastrar Prato </ButtonCadastro>
+            <ButtonCadastro type="submit">Editar Prato </ButtonCadastro>
           </Form>
         </BoxModal>
       </Modal>

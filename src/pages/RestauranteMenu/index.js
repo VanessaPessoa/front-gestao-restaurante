@@ -1,20 +1,21 @@
 import { Box, Container, MyRestaurant, Title } from "./styles";
 
-import { CardMenu } from "../../components";
+import { CardPrato } from "../../components";
 import { useQuery } from "react-query";
 import { useState } from "react";
 import { getRestaurante } from "../../service";
-import AddPrato from "../../components/AddPrato";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import * as actions from "../../store/modules/auth/action";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ButtonLogout from "../../components/ButtonLogout";
+import { Button } from "@mui/material";
+import {Carrinho} from "../../components";
 
-export default function RestaurantDetail() {
+export default function RestauranteMenu() {
   const [restaurante, setRestaurante] = useState([]);
-  const id = useSelector((state) => state.auth.user.id);
+  const {id} = useParams()
   let dispatch = useDispatch();
   let navigate = useNavigate();
 
@@ -37,12 +38,17 @@ export default function RestaurantDetail() {
     return <p> Carregando ... </p>;
   }
 
+  const handleBack = () => {
+    navigate("/");
+  }
+
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(actions.loginFailure());
 
     navigate("/");
   };
+
   
   return (
     <Container>
@@ -53,7 +59,7 @@ export default function RestaurantDetail() {
              <Title>{restaurante.nomeRestaurante}</Title>
            </div>
             <div className="info2">
-            <AddPrato id={id}></AddPrato>
+              <Carrinho />
             </div>
             <div className="info3">
             <ButtonLogout onClick={handleLogout}>
@@ -83,13 +89,14 @@ export default function RestaurantDetail() {
           </MyRestaurant>
         </>
       )}
-
-      <Title>Seu cardapio</Title>
+      <Button onClick={handleBack}> Voltar </Button>      
+      
+      <Title>Pratos</Title>
 
       <Box>
         {getMenu() &&
           getMenu().map((item) => (
-            <CardMenu
+            <CardPrato
               key={item.id}
               id={item.id}
               name={item.nome}

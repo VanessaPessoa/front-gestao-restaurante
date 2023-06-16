@@ -1,58 +1,45 @@
-import {Nav, Search, Button} from './style'
+import {Nav, Button} from './style'
 import { useNavigate } from 'react-router-dom'
-import {useSelector, useDispatch} from 'react-redux'
-
-import * as actions from '../../store/modules/auth/action'
+import {useSelector} from 'react-redux'
+import ButtonLogout from "../ButtonLogout";
+import Carrinho from '../Carrinho';
 
 function Header(){
 
     let navigate = useNavigate();
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-    const perfil = useSelector(state => state.auth.user.role); 
-
-    let dispatch = useDispatch();
+    const perfil = useSelector(state => state.auth.user.perfil); 
 
     function handleClick() {
         navigate("/login");
     }
 
-    const handleLogout = e =>{
-        e.preventDefault();
-        dispatch(actions.loginFailure());
-        
-        navigate('/')
+    function handleCadastrar() {
+        navigate("/cadastrar-restaurante");
     }
 
     return(
         <header>
             <Nav>
-             
-                <Search 
-                    placeholder = "Busque por item ou loja" 
-                    type="search"
-                />
-
                 <div className = "box-button">
-                    {!isLoggedIn ? (
+                    {isLoggedIn && perfil !== 'restaurante' &&(
+                       <Carrinho />
+                    )}
+                </div>
+
+                {!isLoggedIn ? (
+                       <>
                         <Button onClick={handleClick}>
                             <span> Entrar</span>
                         </Button>
+                        <Button onClick={handleCadastrar}>
+                            <span> Cadastrar restaurante</span>
+                        </Button>
+                       </>
+                        
                     ):(
-                        <Button onClick={handleLogout}>
-                            <span> Sair</span>
-                         </Button>
+                        <ButtonLogout />
                     )}
-
-                    {perfil !== 'restaurante' &&(
-                        <Button>
-                            <span> Sacola</span>
-                        </Button>
-                    )}
-                   {perfil === 'restaurante' &&( 
-                        <Button className="ml-3">
-                        </Button>
-                    )}
-                </div>
             </Nav>
         </header>
     )

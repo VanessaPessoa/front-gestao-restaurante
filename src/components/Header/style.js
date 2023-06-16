@@ -30,19 +30,6 @@ export const Nav = styled.nav`
     }
 `
 
-export const Search = styled.input`
-    position: relative;
-    margin-left: 3%;
-    width: 40%;
-    height: 60%;
-    border-color: transparent;
-    border-radius: 8px;
-    background-color: #f7f7f7;
-    font-family: 'Open Sans', sans-serif;
-    padding-left: 1%;
-    font-size: 16px;
-`
-
 export const Button = styled.button`
     position: relative;
     height: 100%;

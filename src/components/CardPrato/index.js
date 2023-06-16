@@ -4,7 +4,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import { useStyles } from "./styles";
-import EditPrato from "../EditPrato";
+import { useDispatch } from "react-redux";
+
+import { addItem } from '../../store/modules/carrinho/action';
 
 export default function MultiActionAreaCard({
   idRestaurante,
@@ -15,6 +17,11 @@ export default function MultiActionAreaCard({
   id,
 }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const addItemCarrinho = () => {
+    dispatch(addItem({ id, name, price }));
+  }
 
   return (
     <Card className={classes.card}>
@@ -40,8 +47,7 @@ export default function MultiActionAreaCard({
           </Typography>
         </CardContent>
         <CardActions>
-          {/* ADICIONAR BOTÂO EDITAR */}
-          <EditPrato idRestaurante={idRestaurante} nome={name} idPrato={id}></EditPrato>
+          <Button onClick={addItemCarrinho}> Adicionar no carrinho </Button>
         </CardActions>
       </CardActionArea>
     </Card>
