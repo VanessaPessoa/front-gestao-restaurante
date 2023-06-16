@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import { BoxModal, Li, ButtonCadastro } from "./styles";
+import { BoxModal, Li, ButtonCadastro, ButtonLimpar, Total } from "./styles";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Badge from '@mui/material/Badge';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,10 +9,15 @@ import { Delete, ShoppingCart } from '@mui/icons-material';
 import { Button, Modal } from '@mui/material';
 
 import {limparCarrinho, removeItem} from "../../store/modules/carrinho/action";
+import EnderecoSelect from '../EnderecoSelect';
+import { addPedido } from '../../service';
 
 export default function Carrinho() {
     const carrinho = useSelector(state => state.carrinho);
     const [count, setCount] = useState(0)
+    const [identificador, setIdentificador] = useState()
+    const idUser = useSelector((state) => state.auth.user.id);
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -36,10 +43,14 @@ export default function Carrinho() {
       const handleRemoverItem = (id) => {
         dispatch(removeItem(id));
       };
+
+      const handlePedido = () => {
+        addPedido(carrinho, identificador, idUser, calcularValorTotal() )
+      };
   return (
    <>
+   <ToastContainer />
     <Button onClick={handleOpen}>
-        Carrinho
         <Badge badgeContent={count} color="primary">
       <ShoppingCart color="action" />
     </Badge>
@@ -54,18 +65,24 @@ export default function Carrinho() {
         <BoxModal>
         <ul>
         {carrinho.map(item => (
-          <Li key={item.id}>
+          <Li key={item.pratoId}>
             <p>Nome: {item.name}</p>
-            <p>Preço: {item.price}</p>
+            <p>Preço: R${item.price}</p>
             <p>Quantidade: {item.quantidade} </p>
             <button onClick={() => handleRemoverItem(item.id)}><Delete /> </button>
           </Li>
         ))}
-        Total: {calcularValorTotal()}
-      </ul>
-        <ButtonCadastro  onClick={handleLimparCarrinho}>
-            Limpar Carrinho
+        </ul>
+       
+        <Total> Total: R${calcularValorTotal()} </Total>
+        <EnderecoSelect setIdentificador={setIdentificador} identificador={identificador}/>
+
+        <ButtonCadastro  onClick={handlePedido}>
+            Fazer o Pedido
         </ButtonCadastro>
+        <ButtonLimpar  onClick={handleLimparCarrinho}>
+            Limpar Carrinho
+        </ButtonLimpar>
         </BoxModal>
     </Modal>
    </>

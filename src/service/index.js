@@ -21,6 +21,16 @@ export function getAllRestaurante() {
   return api.request(options);
 }
 
+export function getAllEndereco(id) {
+  const options = {
+    method: "GET",
+    url: `/clientes/${id}`,
+    params: { includeData: 1, pagination: 0 },
+  };
+
+  return api.request(options);
+}
+
 
 export async function addPrato(data) {
   const options = {
@@ -116,6 +126,73 @@ export function addRestaurante(data){
     })
     .catch(function () {
       toast.error("Não foi possível realizar o cadastro", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    });
+}
+
+export async function addEndereco(data) {
+  const options = {
+    method: "POST",
+    url: "/enderecos",
+    data
+  };
+
+  api
+    .request(options)
+    .then(function (response) {
+      toast.success("Endereço cadastrado com sucesso", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setTimeout(function () {
+        window.location.reload(true);
+      }, 1000);
+    })
+    .catch(function (error) {
+      toast.error("Não foi possível realizar o cadastro", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    });
+}
+
+
+export async function addPedido(carrinho, identificador, idUser, total) {
+  
+  if(!identificador){
+    toast.error("Informe o endereço")
+  }
+  
+  const itens = [] 
+  carrinho.forEach(element => {
+    itens.push({
+      pratoId: element.pratoId,
+      quantidade: element.quantidade
+    })
+  })
+
+  const options = {
+    method: "POST",
+    url: "/pedidos",
+    data: {
+      clienteId: idUser,
+      enderecoClienteId: identificador,
+      valor: total,
+      itens
+    }
+  };
+
+  api
+    .request(options)
+    .then(function (response) {
+      toast.success("Pedido realizado com sucesso", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setTimeout(function () {
+        window.location.href = `http://localhost:3000/`;
+      }, 1000);
+    })
+    .catch(function (error) {
+      toast.error("Não foi possível realizar o pedido", {
         position: toast.POSITION.TOP_RIGHT,
       });
     });

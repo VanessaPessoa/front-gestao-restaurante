@@ -5,6 +5,8 @@ import { getAllRestaurante } from "../../service";
 import { CardRestaurant } from "../../components";
 import { Title, Box } from "./styles";
 import { Container } from "@mui/material";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Home() {
   const [restaurantes, setRestaurantes] = useState([]);
@@ -24,6 +26,7 @@ function Home() {
 
   return (
     <div>
+      <ToastContainer />
       <Header />
       <Container>
         <Title> Restaurantes</Title>
