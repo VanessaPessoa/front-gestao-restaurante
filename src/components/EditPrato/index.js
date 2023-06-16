@@ -1,12 +1,14 @@
-import { BoxModal, Form, ButtonCadastro } from "./style";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import { useEffect, useState } from "react";
 import { Button, Modal } from "@mui/material";
+import { ToastContainer } from 'react-toastify';
 import { TextField } from "..";
 import { useForm } from "react-hook-form";
 import { editPrato } from "../../service";
+
+import 'react-toastify/dist/ReactToastify.css';
+import { BoxModal, Form, ButtonCadastro } from "./style";
+
+
 export default function EditPrato({ idRestaurante, nome, idPrato }) {
   const [open, setOpen] = useState(false);
   const {

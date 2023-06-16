@@ -1,10 +1,13 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
-import { useStyles } from "./styles";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  CardActionArea,
+  CardActions,
+} from "@mui/material/";
 import EditPrato from "../EditPrato";
+import { useStyles } from "./styles";
 
 export default function MultiActionAreaCard({
   idRestaurante,
@@ -40,8 +43,11 @@ export default function MultiActionAreaCard({
           </Typography>
         </CardContent>
         <CardActions>
-          {/* ADICIONAR BOTÂO EDITAR */}
-          <EditPrato idRestaurante={idRestaurante} nome={name} idPrato={id}></EditPrato>
+          <EditPrato
+            idRestaurante={idRestaurante}
+            nome={name}
+            idPrato={id}
+          ></EditPrato>
         </CardActions>
       </CardActionArea>
     </Card>

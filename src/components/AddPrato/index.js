@@ -1,12 +1,15 @@
-import { BoxModal, Form, ButtonCadastro } from "./style";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import { useState } from "react";
+
+import { ToastContainer } from 'react-toastify';
 import { Button, Modal } from "@mui/material";
 import { TextField } from "..";
 import { useForm } from "react-hook-form";
 import { addPrato } from "../../service";
+
+import { BoxModal, Form, ButtonCadastro } from "./style";
+import 'react-toastify/dist/ReactToastify.css';
+
+
 export default function AddPrato({ id }) {
   const [open, setOpen] = useState(false);
   const {

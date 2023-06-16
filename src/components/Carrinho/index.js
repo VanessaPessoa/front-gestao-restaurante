@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import { BoxModal, Li, ButtonCadastro, ButtonLimpar, Total } from "./styles";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-import Badge from '@mui/material/Badge';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import { Delete, ShoppingCart } from '@mui/icons-material';
-import { Button, Modal } from '@mui/material';
+import { Button, Modal, Badge } from '@mui/material';
 
 import {limparCarrinho, removeItem} from "../../store/modules/carrinho/action";
 import EnderecoSelect from '../EnderecoSelect';
 import { addPedido } from '../../service';
+
+import { BoxModal, Li, ButtonCadastro, ButtonLimpar, Total } from "./styles";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Carrinho() {
     const carrinho = useSelector(state => state.carrinho);
@@ -66,10 +66,10 @@ export default function Carrinho() {
         <ul>
         {carrinho.map(item => (
           <Li key={item.pratoId}>
-            <p>Nome: {item.name}</p>
-            <p>Preço: R${item.price}</p>
-            <p>Quantidade: {item.quantidade} </p>
-            <button onClick={() => handleRemoverItem(item.id)}><Delete /> </button>
+            <p className='div1'>Nome: {item.name}</p>
+            <p className='div2'>Preço: R${item.price}</p>
+            <p className='div3'>Quantidade: {item.quantidade} </p>
+            <button className='div4' onClick={() => handleRemoverItem(item.id)}><Delete /> </button>
           </Li>
         ))}
         </ul>

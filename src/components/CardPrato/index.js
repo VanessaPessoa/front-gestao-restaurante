@@ -1,15 +1,18 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import {
+  Button,
+  CardActionArea,
+  CardActions,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import { useStyles } from "./styles";
 import { useDispatch } from "react-redux";
 
-import { addItem } from '../../store/modules/carrinho/action';
+import { addItem } from "../../store/modules/carrinho/action";
 
 export default function MultiActionAreaCard({
-  idRestaurante,
   img,
   name,
   description,
@@ -21,7 +24,7 @@ export default function MultiActionAreaCard({
 
   const addItemCarrinho = () => {
     dispatch(addItem({ id, name, price }));
-  }
+  };
 
   return (
     <Card className={classes.card}>

@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Select, MenuItem, FormControl, InputLabel } from '@mui/material';
-import { useStyles } from "./styles"
 
 const estados = [
   { uf: 'AC', nome: 'Acre' },
@@ -34,16 +33,14 @@ const estados = [
 
 function EstadoSelect({estado, setEstado}) {
 
-  const classes = useStyles();
-
   const handleChange = (event) => {
     setEstado(event.target.value);
   };
 
   return (
-    <FormControl className={classes.input}>
+    <FormControl fullWidth>
       <InputLabel>Estado</InputLabel>
-      <Select value={estado} onChange={handleChange} >
+      <Select value={estado} onChange={handleChange} label="Estado">
         {estados.map((estado) => (
           <MenuItem key={estado.uf} value={estado.uf}>
             {estado.nome}

@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import * as Page from "../pages";
 import { useSelector } from "react-redux";
-import { RestaurantMenu } from "@mui/icons-material";
 
 function RequireAuth({ children }) {
   const signed = useSelector((state) => state.auth.isLoggedIn);

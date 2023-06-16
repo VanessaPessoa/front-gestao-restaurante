@@ -42,16 +42,24 @@ export const ButtonLimpar = styled.button`
 `;
 
 export const Li = styled.li`
-  display: flex;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: 8px;
+  
+.div1 { grid-area: 1 / 1 / 2 / 2; }
+.div2 { grid-area: 1 / 2 / 2 / 3; }
+.div3 { grid-area: 2 / 1 / 3 / 2; }
+.div4 { grid-area: 2 / 2 / 3 / 3; }
 `;
 
 export const Total = styled.p`
-font-family: 'Roboto', sans-serif;
-color: #414143;
-font-size: 16px;
-margin-bottom: 5%;
+  font-family: "Roboto", sans-serif;
+  color: #414143;
+  font-size: 16px;
+  margin-bottom: 5%;
 `;
