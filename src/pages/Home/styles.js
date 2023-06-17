@@ -17,5 +17,4 @@ export const Box = styled.div`
   margin: 20px 0;
   flex-wrap: wrap;
   gap: 10px;
-  justify-content:space-around;
 `;
